@@ -1,0 +1,24 @@
+[
+  {
+    "Path": "D:\\2021Ldtech\\SampleFiles\\role1",
+    "Type": 0,
+    "Roles": [
+      "role1"
+    ]
+  },
+  {
+    "Path": "D:\\2021Ldtech\\SampleFiles\\role2",
+    "Type": 0,
+    "Roles": [
+      "role2"
+    ]
+  },
+  {
+    "Path": "D:\\2021Ldtech\\SampleFiles\\role12",
+    "Type": 0,
+    "Roles": [
+      "role1",
+      "role2"
+    ]
+  }
+]

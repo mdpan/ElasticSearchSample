@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace ESIndexingService.SharePoint
+namespace ESIndexingService.Indexers.SharePoint
 {
     public class HttpClientFactory
     {

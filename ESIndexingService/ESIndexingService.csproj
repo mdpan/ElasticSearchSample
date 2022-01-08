@@ -159,6 +159,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Indexers\SharePoint\DriveItem.cs" />
+    <Compile Include="Indexers\SharePoint\DriveItemType.cs" />
     <Compile Include="Indexers\SharePoint\GraphClient.cs" />
     <Compile Include="Indexers\SharePoint\HttpClientFactory.cs" />
     <Compile Include="Indexers\BaseIndexer.cs" />

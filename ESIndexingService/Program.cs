@@ -1,6 +1,6 @@
 ﻿using ESIndexingService.Indexers;
+using ESIndexingService.Indexers.SharePoint;
 using ESIndexingService.Models;
-using ESIndexingService.SharePoint;
 using Nest;
 using Newtonsoft.Json;
 using System;

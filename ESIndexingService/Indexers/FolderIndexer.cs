@@ -1,4 +1,5 @@
 ﻿using ESIndexingService.Models;
+using Nest;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,8 +12,8 @@ namespace ESIndexingService.Indexers
     {
         private List<FolderRole> folderRoles;        
 
-        public FolderIndexer(string esUrl, string indexName, List<FolderRole> folderRoles)  
-            : base(esUrl, indexName)
+        public FolderIndexer(ElasticClient esClient, List<FolderRole> folderRoles)  
+            : base(esClient)
         {
             this.folderRoles = folderRoles
                 .Where(fr => fr.Type == SourceType.SharedFolder)

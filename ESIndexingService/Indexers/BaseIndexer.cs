@@ -1,7 +1,6 @@
 ﻿using ESIndexingService.Models;
 using Nest;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -16,14 +15,9 @@ namespace ESIndexingService.Indexers
         protected readonly ElasticClient esClient;
         protected readonly TextExtractor textExtractor;
 
-        protected BaseIndexer(string esUrl, string indexName)
+        protected BaseIndexer(ElasticClient esClient)
         {
-            var settings = new ConnectionSettings(new Uri(esUrl))
-               .DefaultIndex(indexName);
-
-            this.esClient = new ElasticClient(settings);
-
-            this.CreateIndex(indexName);
+            this.esClient = esClient;
 
             // Use TikaOnDotNet to extract the contents of the document.
             this.textExtractor = new TextExtractor();
@@ -88,62 +82,5 @@ namespace ESIndexingService.Indexers
             }
         }
 
-        private void CreateIndex(string indexName)
-        {
-            if (this.esClient.Indices.Exists(indexName).Exists)
-            {
-                return;
-            }
-
-            var kuromojiTokenizer = new KuromojiTokenizer();
-            kuromojiTokenizer.Mode = KuromojiTokenizationMode.Search;
-
-            var customAnalyzer = new CustomAnalyzer();
-            customAnalyzer.Tokenizer = kuromojiTokenizer.Type;
-            customAnalyzer.Filter = new List<string>()
-            {
-                "kuromoji_baseform",
-                "kuromoji_part_of_speech",
-                "cjk_width",
-                "ja_stop",
-                "kuromoji_stemmer",
-                "lowercase"
-            };
-            customAnalyzer.CharFilter = new List<string>()
-            {
-                 "icu_normalizer"
-            };
-
-            var indexSettings = new IndexSettings();
-            indexSettings.Analysis = new Analysis();
-            indexSettings.Analysis.Tokenizers = new Tokenizers();
-            indexSettings.Analysis.Tokenizers.Add(kuromojiTokenizer.Type, kuromojiTokenizer);
-            indexSettings.Analysis.Analyzers = new Analyzers();
-            indexSettings.Analysis.Analyzers.Add("kuromoji_normalize", customAnalyzer);
-
-            var indexConfig = new IndexState
-            {
-                Settings = indexSettings
-            };
-
-            if(this.esClient.Indices.Exists(indexName).Exists)
-            {
-                return;
-            }
-
-            var createIndexResponse = this.esClient.Indices.Create(
-                indexName,
-                c => c.InitializeUsing(indexConfig).Map<Document>(
-                    m => m.Properties(p => p.Text(
-                        t => t.Name(n => n.Content).Analyzer("kuromoji_normalize")
-                    ))
-                )
-            );
-
-            if(!createIndexResponse.IsValid)
-            {
-                throw new Exception(createIndexResponse.DebugInformation);
-            }
-        }
     }
 }

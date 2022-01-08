@@ -159,7 +159,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Indexers\SharePoint\GraphClient.cs" />
+    <Compile Include="Indexers\SharePoint\HttpClientFactory.cs" />
     <Compile Include="Indexers\BaseIndexer.cs" />
+    <Compile Include="ESClientFactory.cs" />
+    <Compile Include="Indexers\SharePointIndexer.cs" />
     <Compile Include="Indexers\FolderIndexer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

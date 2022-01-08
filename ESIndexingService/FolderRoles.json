@@ -1,21 +1,29 @@
 [
   {
     "Path": "D:\\2021Ldtech\\SampleFiles\\role1",
-    "Type": 0,
+    "Type": "SharedFolder",
     "Roles": [
       "role1"
     ]
   },
   {
     "Path": "D:\\2021Ldtech\\SampleFiles\\role2",
-    "Type": 0,
+    "Type": "SharedFolder",
     "Roles": [
       "role2"
     ]
   },
   {
     "Path": "D:\\2021Ldtech\\SampleFiles\\role12",
-    "Type": 0,
+    "Type": "SharedFolder",
+    "Roles": [
+      "role1",
+      "role2"
+    ]
+  },
+  {
+    "Path": "/20211206/1341255599",
+    "Type": "SharePoint",
     "Roles": [
       "role1",
       "role2"

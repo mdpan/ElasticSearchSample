@@ -3,7 +3,7 @@ An Elastic Search sample to index and search japanese documents in shared folder
 
 
 
-**To be imporved:**
+**To be improved:**
 
 1, Deletion of files is not detected by Indexing service, should be added.
 
@@ -11,7 +11,7 @@ An Elastic Search sample to index and search japanese documents in shared folder
 
 3, It's better to pass a last checked date to Indexers, so they can just check all files that updated after the last checked date
 
-
+4, Using ElasticSearch Cloud on Azure.
 
 
 
